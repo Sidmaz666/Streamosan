@@ -80,6 +80,7 @@ function Lib(){
 	{
 	  isLoad && isLoad.map(movie => {
 	const title = movie.title
+	const type = title.includes("Season") ? 2 : 1
 	const thumb = movie.thumb
 	const rate = movie.rating
 	const quality = movie.quality
@@ -90,7 +91,7 @@ function Lib(){
 	  <Card thumb={thumb} title={title}
       		 key={title} rate={rate} 
 		media_id={media_id} time="Some Time"
-      		quality={quality} year={year} type="1" />
+      		quality={quality} year={year} type={type} />
 		
 	)
 
