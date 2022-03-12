@@ -110,7 +110,7 @@ function Nav(){
 	      hover:bg-transparent hover:text-[#EC407A]" 
 	      to="/movies">
 	    <FaVideo/>
-	      <span>
+	      <span className="whitespace-nowrap">
 		Movies
 	    </span>
 	    </Link>
@@ -120,11 +120,11 @@ function Nav(){
 	      onClick={ToggleMenu}
 		className="
 	      bg-[#37474F90] p-1 rounded flex justify-center items-center 
-	      space-x-3 md:space-x-2 
+	      space-x-3 md:space-x-2  
 	      hover:bg-transparent hover:text-[#EC407A]" 
 	       to="/tv">
 	    <RiTvFill/> 
-		<span>
+		<span  className="whitespace-nowrap">
 	    TV Shows
 		</span>
 	    </Link>
@@ -152,7 +152,7 @@ function Nav(){
 	      hover:bg-transparent hover:text-[#EC407A]" 
 	      to="/lib">
 	    <FaThList/>
-	      <span>
+	      <span style={{whiteSpace : "nowrap" }}>
 	    A-Z
 	      </span>
 	    </Link>
