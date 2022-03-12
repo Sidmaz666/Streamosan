@@ -1,5 +1,6 @@
 import react from 'react'
 import { useNavigate } from 'react-router-dom'
+import { FaInfoCircle  } from "react-icons/fa";
 
 function Card(props){
   let view = useNavigate()
@@ -9,11 +10,12 @@ function Card(props){
 	  onClick={() => {
 	    view(`/view/${props.media_id}`, { state : { title: props.title, rate: props.rate , quality:  props.quality, duration: props.time, desc: props.desc, type: props.type, vlink: props.vlink }})
 	  }}
-	className="bg-[#0b1724] max-w-xs m-1 
+	className="bg-[#0b1724] max-w-xs m-1 mb-5 
 	  rounded overflow-hidden
 	  cursor-pointer
 	  hover:bg-[#0b172480]
 	  hover:shadow-xl
+	  group
 	  md:hover:transition ease-in duration-100 ease-out
 	  md:hover:max-w-[22rem]
 	  " 	
@@ -30,17 +32,20 @@ function Card(props){
 		Rating: </span>
 		{props.rate > 0 && props.rate || 'Unknown'  }
 	      </div>
-	      <div className="font-bold text-lg text-[#00C853] mb-1">
+		
+
+
+	      <div className="font-bold text-lg group-hover:flex  hidden md:flex text-[#00C853] mb-1">
 		<span className="text-[#78909C]">
 		Quality: </span>
 		{props.quality || 'Unknown' }
 	      </div>
-	      <div className="font-bold text-lg text-[#4DD0E1] mb-1">
+	  <div className="font-bold group-hover:flex  hidden md:flex text-lg text-[#4DD0E1] mb-1">
 		<span className="text-[#78909C]">
 		Duration: </span>
 		{props.time || 'Unknown' }
 	      </div>
-	      <div className="font-bold text-lg text-[#F06292] mb-1">
+	  <div className="font-bold text-lg group-hover:flex  hidden md:flex text-[#F06292] mb-1">
 		<span className="text-[#78909C]">
 		Year: </span>
 		{props.year || 'Unknown' }
@@ -52,7 +57,12 @@ function Card(props){
 		</span>
 
 	      </div>
-	<p className="text-[#B2EBF270] text-base">
+	<p className="text-[#B2EBF270] text-base 
+	  overflow-hidden 
+	  overflow-ellipsis
+	  whitespace-nowrap
+	  md:whitespace-normal
+	  ">
 	  { props.desc }
 	</p>
 	</div>
