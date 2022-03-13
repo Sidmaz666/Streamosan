@@ -22,7 +22,7 @@ function Card(props){
 	key={props.title}>
         <img src={props.thumb}
 	  alt={props.title}
-	 className="w-full h-min "/>
+	  className="w-[400px] h-[300px] md:h-min "/>
 	<div className="px-4 py-2">
 	      <div className="font-bold text-xl text-[#B2EBF2] mb-1">
 		{props.title}
@@ -35,20 +35,26 @@ function Card(props){
 		
 
 
-	      <div className="font-bold text-lg group-hover:flex  hidden md:flex text-[#00C853] mb-1">
+	      <div className="font-bold text-lg group-hover:flex  hidden md:flex  text-[#00C853] mb-1">
 		<span className="text-[#78909C]">
 		Quality: </span>
+		<span className="pl-1">
 		{props.quality || 'Unknown' }
+		</span>
 	      </div>
-	  <div className="font-bold group-hover:flex  hidden md:flex text-lg text-[#4DD0E1] mb-1">
+	  <div className="font-bold group-hover:flex  hidden md:flex text-lg  text-[#4DD0E1] mb-1">
 		<span className="text-[#78909C]">
 		Duration: </span>
+	    <span className="pl-1">
 		{props.time || 'Unknown' }
+	    </span>
 	      </div>
-	  <div className="font-bold text-lg group-hover:flex  hidden md:flex text-[#F06292] mb-1">
+	  <div className="font-bold text-lg group-hover:flex  hidden md:flex  text-[#F06292] mb-1">
 		<span className="text-[#78909C]">
 		Year: </span>
+	    <span className="pl-1">
 		{props.year || 'Unknown' }
+	    </span>
 	      </div>
 	      <div className="font-bold text-lg  text-[#4DD0E1] mb-1">
 		<span className="text-[#9C27B0] bg-[#455A6460]

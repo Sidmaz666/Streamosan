@@ -29,7 +29,7 @@ function View(){
     }
 
    const [isEp,setEp] =  useState(last_ep || link_obj)
-   const [isEpName,setEpName] =  useState(last_epName || "Episode 1")
+   const [isEpName,setEpName] =  useState(last_epName || " Episode 1")
 
     const [isData,setData] = useState()
     
