@@ -1,9 +1,20 @@
-import react from 'react'
+import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FaInfoCircle  } from "react-icons/fa";
+import axios from 'axios'
+import Img from './img/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg'
 
 function Card(props){
+  const [isImg,setImg] = useState()
   let view = useNavigate()
+
+  useEffect(() => {
+  axios.get(`/img${props.thumb}`)
+    .then((res) => {
+      setImg(res.data.link)
+    })
+
+  }, [])
+
   return (
     <>
 	<div 
@@ -20,7 +31,7 @@ function Card(props){
 	  md:hover:max-w-[22rem]
 	  " 	
 	key={props.title}>
-        <img src={props.thumb}
+        <img src={isImg || Img}
 	  alt={props.title}
 	  className="w-[400px] h-[300px] md:h-min "/>
 	<div className="px-4 py-2">

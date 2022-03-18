@@ -8,6 +8,7 @@ import Cards from '../components/cards'
 function HomePage(){
 const [isMovie,setMovie] = useState()
 
+
   useEffect(() => {
     const API_URL=`https://streamo-api.herokuapp.com/?limit=16`
     axios.get(API_URL)
@@ -18,7 +19,7 @@ const [isMovie,setMovie] = useState()
 
   },[])
 
-	
+
 
   return(
     <>
@@ -26,7 +27,7 @@ const [isMovie,setMovie] = useState()
     {
       isMovie && isMovie.map(Movie => {
 	const title = Movie.post_title
-	const thumb = `https://cdn.fmoviesf.me${Movie.image}`
+	const thumb = Movie.image
 	const desc = Movie.post_excerpt
 	const rate = Movie.imdb
 	const episode = Movie.episodes
@@ -36,12 +37,16 @@ const [isMovie,setMovie] = useState()
 	const type = Movie.type
 	const media_id = Movie.post_name
 
+
+
 	return (
 	  <Card thumb={thumb} title={title}
       		desc={desc} key={title} rate={rate} vlink={video_url}
 		media_id={media_id}
       		quality={quality} time={duration} type={type} />
 	)
+
+
 	})
       }
       </Cards>

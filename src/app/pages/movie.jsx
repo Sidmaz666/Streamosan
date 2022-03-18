@@ -26,7 +26,7 @@ const  [isMovieSug,setMovieSug] = useState()
     {
       isMovieSug && isMovieSug.map(Movie => {
 	const title = Movie.post_title
-	const thumb = `https://cdn.fmoviesf.me${Movie.image}`
+	const thumb = Movie.image
 	const desc = Movie.post_excerpt
 	const rate = Movie.imdb
 	const episode = Movie.episodes
