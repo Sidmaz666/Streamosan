@@ -8,7 +8,7 @@ function Card(props){
   let view = useNavigate()
 
   useEffect(() => {
-  axios.get(`/img${props.thumb}`)
+    axios.get(`https://streamo-api.herokuapp.com/img${props.thumb}`)
     .then((res) => {
       setImg(res.data.link)
     })
