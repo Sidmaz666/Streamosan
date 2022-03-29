@@ -49,12 +49,21 @@ function Search(){
 	return (
 	  <>
 	          { isLoad ? <><br/>
+		      <div
+		    className="
+		    p-2
+		    flex
+		    justify-center
+		    items-center
+		    "
+		      >
 	<TailSpin
  	 ariaLabel="loading-indicator"
 	  height={100}
 	  width={1000}
 	  color="#B2EBF2"
 	/>
+		    </div>
 	  <br/>
 	</> : <>
 	    <Cards heading={`Search Results For : ${query} `}>

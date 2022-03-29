@@ -100,12 +100,21 @@ function View(){
 
 	<>
 	        { isLoad ? <><br/>
+		    <div
+		  className="
+		  p-2
+		  flex
+		  justify-center
+		  items-center
+		  "
+		    >
 	<TailSpin
  	 ariaLabel="loading-indicator"
 	  height={100}
 	  width={1000}
 	  color="#B2EBF2"
 	/>
+		  </div>
 	  <br/>
 	</> : <>
 		  <Cards heading={`${title || " Loading "}-${isEpName}`}>
@@ -217,12 +226,21 @@ function View(){
     return (
 		<>
 		        { isLoad ? <><br/>
+		    <div
+		  className="
+		  p-2
+		  flex
+		  justify-center
+		  items-center
+		  "
+		    >
 	<TailSpin
  	 ariaLabel="loading-indicator"
 	  height={100}
 	  width={1000}
 	  color="#B2EBF2"
 	/>
+			  </div>
 	  <br/>
 	</> : <>
 		  <Cards heading={`${title}-${isEpName}`}>

@@ -26,12 +26,19 @@ const [isLoad,setLoad] = useState(true)
     <>
 
       { isLoad ? <><br/>
+	  <div className="
+	flex
+	p-2
+	justify-center
+	items-center
+	">
 	<TailSpin
  	 ariaLabel="loading-indicator"
 	  height={100}
 	  width={1000}
 	  color="#B2EBF2"
 	/> 
+	  </div>
 	  <br/>
 	</> : <>
 
