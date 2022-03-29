@@ -3,12 +3,14 @@ import React, {useEffect, useState} from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import Cards from '../components/cards'
 import Video from '../components/video'
+import {TailSpin} from 'react-loader-spinner'
 
 function View(){
 
   const locate = useLocation()
   let {id} = useParams()
 
+  const [isLoad,setLoad] = useState(true)
   
   const link = locate.state.vlink || 0
   const title = locate.state.title 
@@ -43,6 +45,10 @@ function View(){
 	  	setData(response.data)
       })
     }
+
+    setTimeout(() => {
+	setLoad(false)
+    },2000)
 
   },[isEp])
 
@@ -93,6 +99,15 @@ function View(){
     return (
 
 	<>
+	        { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
 		  <Cards heading={`${title || " Loading "}-${isEpName}`}>
 
 		<Video link={default_link !== null && isEp || default_link} title={isEpName}/>
@@ -189,6 +204,8 @@ function View(){
 
 		  </Cards>
        </>
+		}
+      </>
 
 
 
@@ -199,6 +216,15 @@ function View(){
     document.title = `Streamo | ${title}-${isEpName}`
     return (
 		<>
+		        { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
 		  <Cards heading={`${title}-${isEpName}`}>
 
 		<Video link={isEp} title={isEpName}/>
@@ -281,6 +307,8 @@ function View(){
 
 		  </Cards>
     </>
+			}
+      </>
   )
   }
   

@@ -1,19 +1,20 @@
 import  React, { useState, useEffect } from 'react'
-import { BiChevronsDown } from 'react-icons/bi'
 import axios from 'axios'
 import Card from '../components/card'
 import Cards from '../components/cards'
+import { TailSpin } from 'react-loader-spinner'
 
 
 function HomePage(){
 const [isMovie,setMovie] = useState()
-
+const [isLoad,setLoad] = useState(true)
 
   useEffect(() => {
     const API_URL=`https://streamo-api.herokuapp.com/?limit=16`
     axios.get(API_URL)
       .then((response) => {
 	setMovie(response.data[0].movie_list)
+	setLoad(false)
 	document.title = "Streamo | Home"
       })
 
@@ -23,6 +24,17 @@ const [isMovie,setMovie] = useState()
 
   return(
     <>
+
+      { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/> 
+	  <br/>
+	</> : <>
+
       <Cards heading="Popular Shows" >
     {
       isMovie && isMovie.map(Movie => {
@@ -50,6 +62,13 @@ const [isMovie,setMovie] = useState()
 	})
       }
       </Cards>
+
+
+	</>
+
+      }
+
+
     </>
   )
 }

@@ -3,16 +3,18 @@ import { BiChevronsDown } from 'react-icons/bi'
 import axios from 'axios'
 import Card from '../components/card'
 import Cards from '../components/cards'
+import {TailSpin} from 'react-loader-spinner'
 
 function TvShowPage(){
 const [isLimit,setLimit] = useState(16)
 const [isTv,setTv] = useState()
-
+const [isLoad,setLoad] = useState(true)
   useEffect(() => {
     const API_URL=`https://streamo-api.herokuapp.com/?limit=${isLimit}`
     axios.get(API_URL)
       .then((response) => {
 	setTv(response.data[0].tv_suggestions)
+	setLoad(false)
 	document.title = "TV shows | Streamo"
       })
 
@@ -22,6 +24,15 @@ const [isTv,setTv] = useState()
 
   return(
     <>
+            { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
       <Cards heading="Popular TV Shows!">
     {
       isTv && isTv.map(Movie => {
@@ -70,6 +81,8 @@ const [isTv,setTv] = useState()
 	<BiChevronsDown className="text-3xl animate-pulse "/>
 	Load More
       </button>
+    </>
+	    }
     </>
   )
 }

@@ -3,16 +3,18 @@ import { BiChevronsDown } from 'react-icons/bi'
 import axios from 'axios'
 import Card from '../components/card'
 import Cards from '../components/cards'
+import {TailSpin} from 'react-loader-spinner'
 
 function MoviePage(){
 const [isLimit,setLimit] = useState(16)
 const  [isMovieSug,setMovieSug] = useState()
-
+const [isLoad,setLoad] = useState(true)
   useEffect(() => {
     const API_URL=`https://streamo-api.herokuapp.com/?limit=${isLimit}`
     axios.get(API_URL)
       .then((response) => {
 	setMovieSug(response.data[0].movie_suggestions)
+	setLoad(false)
 	document.title = "Movies | Streamo "
       })
 
@@ -22,6 +24,15 @@ const  [isMovieSug,setMovieSug] = useState()
 
   return(
     <>
+            { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
       <Cards heading="Movies You should watch!">
     {
       isMovieSug && isMovieSug.map(Movie => {
@@ -56,7 +67,9 @@ const  [isMovieSug,setMovieSug] = useState()
 	  <BiChevronsDown className="text-3xl animate-pulse "/>
 	  Load More
       </button>
-    </>
+	</>
+	    }
+	    </>
   )
 }
 

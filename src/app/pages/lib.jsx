@@ -3,6 +3,7 @@ import Cards from '../components/cards'
 import Card from '../components/card'
 import axios from 'axios'
 import { BiChevronsDown } from 'react-icons/bi'
+import{TailSpin} from 'react-loader-spinner'
 
 
 function Lib(){
@@ -12,7 +13,7 @@ function Lib(){
   const Random = Math.floor(Math.random() * (36 - 0 + 1)) + 0
   const [isLib,setLib] = useState(Random)
   const [isLoad,setLoad] = useState()
-
+  const [isSpin,setSpin] = useState(true)
   const options = "0123456789abcdefghijklmnopqrstuvwxyz"
 		  const opt = []
 		  for(let x=0; options.length > x; x++){
@@ -29,7 +30,7 @@ function Lib(){
       .then((response) => {
 
 	setLoad(response.data.result)
-	
+	setSpin(false)
       })
     
   },[isPage,isLib])
@@ -38,6 +39,16 @@ function Lib(){
 
   return (
     <>
+            { isSpin ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
+
       <Cards heading="Library : Find A-Z">
 	      <div className="p-2 mb-3  bg-[#37474F30]">
 		{
@@ -113,6 +124,8 @@ function Lib(){
       </button>
 
       </Cards>
+    </>
+	    }
     </>
   )
 

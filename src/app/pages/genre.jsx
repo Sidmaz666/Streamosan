@@ -4,6 +4,7 @@ import axios from 'axios'
 import Cards from '../components/cards'
 import Card from '../components/card'
 import { BiChevronsDown } from 'react-icons/bi'
+import { TailSpin } from 'react-loader-spinner'
 
 function Genre(){
 
@@ -13,7 +14,7 @@ function Genre(){
   	const [selGenre,setGenre] = useState("action")
   	
   	const [isList,setList] = useState()
-
+	const [isLoad,setLoad] = useState(true)
   useEffect(() => {
 
     axios.get(`https://streamo-api.herokuapp.com/category`)
@@ -28,12 +29,23 @@ function Genre(){
       .then(response => {
 	document.title = `Streamo | Category -  ${selGenre.charAt(0).toUpperCase() + selGenre.slice(1)} `
 	setList(response.data.result)
+		setLoad(false)
 	})
     },[selGenre])
 
   	
 	return (
 	  <>
+	          { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
+
 	    <Cards heading={`Select From Popular Categories : ${selGenre.charAt(0).toUpperCase() + selGenre.slice(1)
 	      }`}>
 	      
@@ -72,6 +84,8 @@ function Genre(){
 
 	    </Cards>
 
+	  </>
+		  }
 	  </>
 
 	)

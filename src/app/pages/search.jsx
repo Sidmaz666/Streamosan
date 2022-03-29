@@ -4,13 +4,13 @@ import axios from 'axios'
 import Cards from '../components/cards'
 import Card from '../components/card'
 import { BiChevronsDown } from 'react-icons/bi'
+import {TailSpin} from 'react-loader-spinner'
 
 function Search(){
 
 	let {query} = useParams()
   	const [isPage,setPage] = useState(1)
-
-  	
+  	const [isLoad,setLoad] = useState(true)
   	const [isResult,setResult] = useState()
         
 
@@ -26,6 +26,7 @@ function Search(){
 	  Spage()
 	}
 	setResult(JSON.stringify(response.data.result))
+	setLoad(false)
 	  	
 	  if(window.location.pathname.split('/')[1] == "search"){
 
@@ -47,6 +48,15 @@ function Search(){
   	
 	return (
 	  <>
+	          { isLoad ? <><br/>
+	<TailSpin
+ 	 ariaLabel="loading-indicator"
+	  height={100}
+	  width={1000}
+	  color="#B2EBF2"
+	/>
+	  <br/>
+	</> : <>
 	    <Cards heading={`Search Results For : ${query} `}>
 
       {
@@ -84,6 +94,8 @@ function Search(){
 	  Load More
       </button>
 
+	  </>
+		  }
 	  </>
 
 	)
